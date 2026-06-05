@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бери Рули — аренда авто</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstyle.css">
+</head>
+
+<body>
+
+    <div id="page-preloader"
+        class="d-flex justify-content-center align-items-center position-fixed top-0 start-0 w-100 h-100"
+        style="background-color: var(--color-bg); z-index: 9999; transition: opacity 0.3s ease, visibility 0.3s ease;">
+        <div class="text-center">
+            <div class="spinner-border" role="status"
+                style="width: 3.5rem; height: 3.5rem; color: var(--color-accent); border-width: 0.25em;">
+                <span class="visually-hidden">Загрузка...</span>
+            </div>
+            <h5 class="mt-3 fw-bold"
+                style="font-family: var(--font-main); color: var(--color-text); letter-spacing: 0.5px;">Бери Рули...
+            </h5>
+        </div>
+    </div>
+    <div class="sticky-top-wrapper">
+        <div class="alert alert-dismissible fade show mb-0 py-2 border-0 rounded-0" role="alert"
+            style="position: fixed; top: 0; left: 0; width: 100%; z-index: 1060; height: auto; background-color: var(--color-line);">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-auto">
+                        <div class="d-flex align-items-center justify-content-center gap-3">
+                            <p class="mb-0 text-notice-custom" style="font-size: 14px; font-weight: 500;">
+                                Спецпредложение: купи авто по цене и получи дубликаты госномеров в подарок!
+                            </p>
+                            <button type="button" data-bs-dismiss="alert" aria-label="Закрыть"
+                                class="btn p-0 border-0 d-flex align-items-center justify-content-center"
+                                style="width: 12px; height: 12px; min-width: 12px;">
+                                <img src="icon/cross.svg" alt="Закрыть" style="width: 12px; height: 12px; display: block;">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <header class="border-bottom" style="position: fixed; top: 40; left: 0; width: 100%; z-index: 1050; background-color: #ffffff;">
+            <div class="container-fluid px-3 max-width-container header-container mx-auto">
+                <div class="row align-items-center justify-content-between header-inner-row g-0 flex-nowrap">
+
+                    <div class="col-auto d-flex align-items-center logo-group">
+                        <img src="icon/logo.svg" alt="Бери Рули" class="me-3" style="width: 90px; height: auto;">
+                        <div class="header-text">
+                            <div class="fw-bold mb-0" style="font-size: 14px;">Аренда автомобилей<br>с выкупом №1 на Юге России</div>
+                            <p class="small text-muted mb-0">Выгодные и честные условия</p>
+                        </div>
+                    </div>
+
+                    <div class="col-auto d-none d-lg-flex align-items-center contacts-desktop">
+                        <div class="me-4 d-flex align-items-center">
+                            <img src="icon/icon0_1.svg" alt="Адрес" class="me-2 icon">
+                            <div>
+                                <p class="mb-0 fw-medium">Ставрополь ул. Доваторцев, 21</p>
+                                <a href="#" class="link-accent-gray small">Выбрать город</a>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <img src="icon/icon0_2.svg" alt="Телефон" class="me-2 icon">
+                            <div>
+                                <p class="mb-0 fw-bold phone">8 (962) 495‑55‑54</p>
+                                <a href="#" class="link-accent-gray small" data-bs-toggle="modal"
+                                    data-bs-target="#callbackModal">Заказать звонок</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-auto d-flex d-lg-none align-items-center mobile-controls">
+                        <a href="#" class="mobile-icon">
+                            <img src="icon/icon0_2.svg" alt="Позвонить">
+                        </a>
+                        <a href="#" class="mobile-icon">
+                            <img src="icon/icon0_3.svg" alt="Профиль">
+                        </a>
+                        <button class="mobile-menu-btn" type="button" data-bs-toggle="offcanvas"
+                            data-bs-target="#mobileMenuOffcanvas" aria-controls="mobileMenuOffcanvas">
+                            <img src="icon/burger.svg" alt="Меню">
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="offcanvas offcanvas-end w-100 border-0 d-lg-none" tabindex="-1" id="mobileMenuOffcanvas"
+                aria-labelledby="mobileMenuOffcanvasLabel">
+                <div class="d-flex justify-content-end p-3">
+                    <button type="button" class="btn-close-custom border-0 bg-transparent p-2" data-bs-dismiss="offcanvas"
+                        aria-label="Закрыть">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0088cf" stroke-width="2">
+                            <path d="M18 6L6 18M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="offcanvas-body d-flex flex-column pt-0 px-4 pb-4">
+
+                    <div class="mobile-menu-list-custom mb-4">
+
+                        <div class="menu-item-collapse w-100 m-0">
+                            <div class="d-flex justify-content-between align-items-center py-3 bg-light-gray px-3"
+                                data-bs-toggle="collapse" data-bs-target="#mobileCatalogCollapse" style="cursor: pointer;">
+                                <span class="fw-bold">Каталог автомобилей</span>
+                                <svg class="arrow-icon" width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                    stroke="currentColor" stroke-width="2">
+                                    <path d="M2 4l4 4 4-4" />
+                                </svg>
+                            </div>
+                            <div class="collapse" id="mobileCatalogCollapse">
+                                <ul class="submenu-custom list-unstyled px-3 pt-2">
+                                    <li><a href="#" class="py-2 d-block text-decoration-none text-secondary">Новые авто</a>
+                                    </li>
+                                    <li><a href="#" class="py-2 d-block text-decoration-none text-secondary">Авто с
+                                            пробегом</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="menu-item-collapse border-bottom-light">
+                            <div class="d-flex justify-content-between align-items-center py-3" data-bs-toggle="collapse"
+                                data-bs-target="#mobileBuyingCollapse" style="cursor: pointer;">
+                                <span class="fw-bold text-dark">Варианты покупки</span>
+                                <svg class="arrow-icon" width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                    stroke="currentColor" stroke-width="2">
+                                    <path d="M4 2l4 4-4 4" />
+                                </svg>
+                            </div>
+                            <div class="collapse" id="mobileBuyingCollapse">
+                                <ul class="submenu-custom list-unstyled px-3 pb-2">
+                                    <li><a href="#" class="py-2 d-block text-decoration-none text-secondary">Аренда с
+                                            выкупом</a></li>
+                                    <li><a href="#" class="py-2 d-block text-decoration-none text-secondary">Рассрочка</a>
+                                    </li>
+                                    <li><a href="#" class="py-2 d-block text-decoration-none text-secondary">В кредит</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="border-bottom-light">
+                            <a href="#" class="d-block py-3 text-decoration-none text-dark fw-bold">Дубликаты госномеров</a>
+                        </div>
+                        <div class="border-bottom-light">
+                            <a href="#" class="d-block py-3 text-decoration-none text-dark fw-bold">Истории выкупа</a>
+                        </div>
+
+                        <div class="menu-item-collapse border-bottom-light">
+                            <div class="d-flex justify-content-between align-items-center py-3" data-bs-toggle="collapse"
+                                data-bs-target="#mobileCompanyCollapse" style="cursor: pointer;">
+                                <span class="fw-bold text-dark">О компании</span>
+                                <svg class="arrow-icon" width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                    stroke="currentColor" stroke-width="2">
+                                    <path d="M4 2l4 4-4 4" />
+                                </svg>
+                            </div>
+                            <div class="collapse" id="mobileCompanyCollapse">
+                                <ul class="submenu-custom list-unstyled px-3 pb-2">
+                                    <li><a href="#" class="py-2 d-block text-decoration-none text-secondary">Вакансии</a>
+                                    </li>
+                                    <li><a href="#" class="py-2 d-block text-decoration-none text-secondary">Команда</a>
+                                    </li>
+                                    <li><a href="#" class="py-2 d-block text-decoration-none text-secondary">Новости</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div>
+                            <a href="#" class="d-block py-3 text-decoration-none text-dark fw-bold">Контакты</a>
+                        </div>
+
+                    </div>
+
+                    <div class="menu-blue-divider mb-4"></div>
+
+                    <div class="mobile-menu-contacts-custom d-flex flex-column gap-4 mt-2">
+                        <a href="#" class="d-flex align-items-center gap-3 text-decoration-none text-dark">
+                            <img src="icon/icon0_3.svg" alt="ЛК" width="24" height="24">
+                            <span class="fw-medium">Личный кабинет</span>
+                        </a>
+                        <div class="d-flex align-items-start gap-3">
+                            <img src="icon/icon0_1.svg" alt="Адрес" width="24" height="24">
+                            <div>
+                                <div class="fw-medium text-dark">Ставрополь ул. Доваторцев, 21</div>
+                                <a href="#" class="text-muted small text-decoration-underline">Выбрать город</a>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-start gap-3">
+                            <img src="icon/icon0_2.svg" alt="Телефон" width="24" height="24">
+                            <div>
+                                <div class="fw-bold fs-5 text-dark">8 (962) 495-55-54</div>
+                                <a href="#" class="text-muted small text-decoration-underline" data-bs-toggle="modal"
+                                    data-bs-target="#callbackModal">Заказать звонок</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+
+        <nav class="navbar navbar-expand-lg custom-navbar d-none d-lg-block">
+            <div class="navbar-container">
+
+                <div class="collapse navbar-collapse" id="mainNavbar">
+                    <ul class="navbar-nav align-items-lg-center">
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="catalogDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Каталог автомобилей
+                            </a>
+                            <ul class="dropdown-menu text-center" aria-labelledby="catalogDropdown">
+                                <li><a class="dropdown-item" href="#">Новые авто</a></li>
+                                <li><a class="dropdown-item" href="#">Авто с пробегом</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="buyingDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Варианты покупки
+                            </a>
+                            <ul class="dropdown-menu text-center" aria-labelledby="buyingDropdown">
+                                <li><a class="dropdown-item" href="#">Аренда с выкупом</a></li>
+                                <li><a class="dropdown-item" href="#">Рассрочка</a></li>
+                                <li><a class="dropdown-item" href="#">Наличные</a></li>
+                                <li><a class="dropdown-item" href="#">В кредит</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Дубликаты госномеров</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Истории выкупа</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="companyDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                О компании
+                            </a>
+                            <ul class="dropdown-menu text-center" aria-labelledby="companyDropdown">
+                                <li><a class="dropdown-item" href="#">Вакансии</a></li>
+                                <li><a class="dropdown-item" href="#">Команда</a></li>
+                                <li><a class="dropdown-item" href="#">Новости</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Контакты</a>
+                        </li>
+
+                        <li class="nav-item d-none d-lg-block">
+                            <div class="navbar-divider"></div>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link lk-link" href="#">
+                                <img src="icon/icon0_3.svg" alt="Личный кабинет" class="lk-icon"> Личный кабинет
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+
+            </div>
+        </nav>
+    </div>
+
+
+    <!-- Секция: Промо-баннер с машиной -->
+    <section class="promo-banner-section py-5 position-relative overflow-hidden">
+        <div class="container-fluid custom-container" style="max-width: 1300px;">
+            <div class="row align-items-center g-3 flex-row">
+
+                <div class="col-12 col-md-7 text-start py-4 position-relative z-3 promo-text-column">
+                    <h1 class="promo-main-title fw-border mb-3">
+                        Аренда автомобиля с выкупом<br>
+                        в Ставрополе <span class="text-accent-blue">от 530 ₽ в сутки</span>
+                    </h1>
+                    <p class="promo-subtitle text-muted-custom mb-4 mb-md-5">
+                        Удобнее и выгоднее, чем копить на машину
+                    </p>
+                    <a href="#" class="btn btn-primary btn-lg px-4 py-3 fw-bold btn-promo-action">
+                        Смотреть каталог авто
+                    </a>
+                </div>
+
+                <div class="col-12 col-md-5 text-center position-relative order-1 order-md-2">
+
+                    <div class="promo-bg-diamond-back position-absolute">
+                        <img src="image/rombblue.png" alt="Декор фон" class="w-100 h-auto">
+                    </div>
+
+                    <div class="promo-bg-diamond-front position-absolute">
+                        <img src="image/rombwhite.png" alt="Декор контур" class="w-100 h-auto">
+                    </div>
+
+                    <div class="promo-car-wrapper">
+                        <img src="image/car.png" alt="Аренда авто в Ставрополе" class="img-fluid promo-car-img">
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Секция: Без кредита -->
+    <section class="no-credit-section py-5 position-relative overflow-hidden" >
+        <!-- Декоративный элемент в углу (если понадобится картинка фона) -->
+        <div class="decor-top-right position-absolute top-0 end-0 d-none d-lg-block"></div>
+
+        <div class="container-fluid custom-container position-relative z-1" style="max-width: 1300px;">
+            <!-- Шапка блока: Заголовок и подзаголовок -->
+            <div class="row mb-5">
+                <div class="col-12 col-lg-7">
+                    <h2 class="credit-main-title fw-black mb-3">Без кредита</h2>
+                    <p class="credit-subtitle text-muted-custom mb-0">
+                        Оформив аренду авто с последующим выкупом, вы можете сразу же получить автомобиль в свое
+                        распоряжение, погашая его стоимость частями.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Сетка карточек преимуществ -->
+            <div class="row g-4 row-cols-1 row-cols-md-3">
+                <!-- Карточка 1: Белая с рамкой -->
+                <div class="col">
+                    <div class="credit-card h-100 d-flex flex-column justify-content-center text-center p-4">
+                        <h3 class="credit-card-title fw-black mb-3">Нужен только паспорт и права</h3>
+                        <p class="credit-card-text text-muted-custom mb-0">
+                            Не нужна справка с места работы и кредитная история
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Карточка 2: Активная синяя (Центральная) -->
+                <div class="col">
+                    <div
+                        class="credit-card card-accent-blue h-100 d-flex flex-column justify-content-center text-center p-4">
+                        <h3 class="credit-card-title fw-black mb-3 text-white">0% комиссий</h3>
+                        <p class="credit-card-text text-white opacity-85 mb-0">
+                            Выкуп авто в любой момент без комиссий
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Карточка 3: Белая с рамкой -->
+                <div class="col">
+                    <div class="credit-card h-100 d-flex flex-column justify-content-center text-center p-4">
+                        <h3 class="credit-card-title fw-black mb-3">Регулируйте сумму выплат</h3>
+                        <p class="credit-card-text text-muted-custom mb-0">
+                            Сами выбираете сумму для выплат от 18 000 тысяч в месяц
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="suit-section py-5">
+        <div class="container-fluid custom-container" style="max-width: 1300px;">
+
+            <!-- Заголовок секции (30px Black) -->
+            <h2 class="suit-main-title fw-black mb-5">Мы подходим вам, если:</h2>
+
+            <!-- Двухколоночный список по сетке Bootstrap -->
+            <div class="row g-4 row-cols-1 row-cols-md-2">
+
+                <!-- Левая колонка -->
+                <div class="col d-flex flex-column gap-4">
+                    <!-- Пункт 1 -->
+                    <div class="suit-item d-flex align-items-start">
+                        <img src="icon/icon_list.svg" alt="Чекбокс" class="suit-icon me-3 flex-shrink-0">
+                        <p class="suit-text mb-0">Вы хотите приобрести авто уже сегодня</p>
+                    </div>
+
+                    <!-- Пункт 2 -->
+                    <div class="suit-item d-flex align-items-start">
+                        <img src="icon/icon_list.svg" alt="Чекбокс" class="suit-icon me-3 flex-shrink-0">
+                        <p class="suit-text mb-0">Вы хотите экономить на ежемесячном платеже за свой автомобиль</p>
+                    </div>
+
+                    <!-- Пункт 3 -->
+                    <div class="suit-item d-flex align-items-start">
+                        <img src="icon/icon_list.svg" alt="Чекбокс" class="suit-icon me-3 flex-shrink-0">
+                        <p class="suit-text mb-0">Хотите купить авто под такси</p>
+                    </div>
+                </div>
+
+                <!-- Правая колонка -->
+                <div class="col d-flex flex-column gap-4">
+                    <!-- Пункт 4 -->
+                    <div class="suit-item d-flex align-items-start">
+                        <img src="icon/icon_list.svg" alt="Чекбокс" class="suit-icon me-3 flex-shrink-0">
+                        <p class="suit-text mb-0">Вам не одобряют кредит в банке</p>
+                    </div>
+
+                    <!-- Пункт 5 -->
+                    <div class="suit-item d-flex align-items-start">
+                        <img src="icon/icon_list.svg" alt="Чекбокс" class="suit-icon me-3 flex-shrink-0">
+                        <p class="suit-text mb-0">Вам нужно приобрести несколько автомобилей на выгодных условиях</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="advantages-buy-section py-5">
+        <div class="container-fluid custom-container" style="max-width: 1300px;">
+            <h2 class="fw-bolder mb-4" style="font-size: 30px; line-height: 1.3;">
+            Выкупать автомобиль с нами <span style="color: var(--color-accent)">удобно, быстро<br>и выгоднее</span> чем в банке
+        </h2>
+
+            <div class="info-stats-box p-3 mb-5">
+                <div class="row g-3 align-items-center">
+                    <div class="col-12 col-md-6 border-md-end-custom">
+                        <div class="stat-item d-flex align-items-center px-md-3">
+                            <img src="icon/icon_list.svg" alt="Иконка" class="stat-icon me-3 flex-shrink-0">
+                            <p class="mb-0 stat-text">
+                                <span class="fw-bold text-accent-blue">95% наших клиентов</span> выкупают автомобиль
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="stat-item d-flex align-items-center px-md-3">
+                            <img src="icon/icon_list.svg" alt="Иконка" class="stat-icon me-3 flex-shrink-0">
+                            <p class="mb-0 stat-text">
+                                <span class="fw-bold text-accent-blue">11 месяцев</span> среднее время выкупа в «Бери
+                                Рули»
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4 row-cols-1 row-cols-md-2 row-cols-lg-3">
+
+                <div class="col">
+                    <div class="benefit-item-box d-flex align-items-start">
+                        <img src="icon/icon4_2_1.svg" alt="Иконка" class="benefit-icon me-3 flex-shrink-0">
+                        <div>
+                            <h4 class="benefit-title fw-bold mb-2">Нет фиксированной суммы взноса</h4>
+                            <p class="benefit-desc text-muted-custom mb-0">Чтобы быстрее выкупить автомобиль — просто
+                                напишите об этом менеджеру</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="benefit-item-box d-flex align-items-start">
+                        <img src="icon/icon4_2_2.svg" alt="Иконка" class="benefit-icon me-3 flex-shrink-0">
+                        <div>
+                            <h4 class="benefit-title fw-bold mb-2">Возвращаем деньги</h4>
+                            <p class="benefit-desc text-muted-custom mb-0">За не выкупленный автомобиль</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="benefit-item-box d-flex align-items-start">
+                        <img src="icon/icon4_2_3.svg" alt="Иконка" class="benefit-icon me-3 flex-shrink-0">
+                        <div>
+                            <h4 class="benefit-title fw-bold mb-2">Сами выбираете сумму для выплат</h4>
+                            <p class="benefit-desc text-muted-custom mb-0">От 18 000 тысяч в месяц</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="benefit-item-box d-flex align-items-start">
+                        <img src="icon/icon4_2_4.svg" alt="Иконка" class="benefit-icon me-3 flex-shrink-0">
+                        <div>
+                            <h4 class="benefit-title fw-bold mb-2">10 дней отсрочка платежа</h4>
+                            <p class="benefit-desc text-muted-custom mb-0">Успеете поправить свои дела и внести платеж
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="benefit-item-box d-flex align-items-start">
+                        <img src="icon/icon4_2_5.svg" alt="Иконка" class="benefit-icon me-3 flex-shrink-0">
+                        <div>
+                            <h4 class="benefit-title fw-bold mb-2">Дарим страховку ОСАГО на один год</h4>
+                            <p class="benefit-desc text-muted-custom mb-0"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="benefit-item-box d-flex align-items-start">
+                        <img src="icon/icon4_2_6.svg" alt="Иконка" class="benefit-icon me-3 flex-shrink-0">
+                        <div>
+                            <h4 class="benefit-title fw-bold mb-2">Скидка 20% на выкуп</h4>
+                            <p class="benefit-desc text-muted-custom mb-0">Всех последующих автомобилей</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="catalog-section py-4">
+        <div class="container">
+
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <h2 style="font-weight: 900; font-size: 30px; line-height: 1.3; color: var(--color-text);">Каталог автомобилей с пробегом</h2>
+                <a href="#" class="btn btn-catalog-all btn-primary px-4 py-2 fw-semibold d-none d-lg-block">Смотреть весь каталог</a>
+            </div>
+
+            <!--десктоп-->
+            <div class="row g-4 flex-nowrap catalog-grid">
+
+                <div class="col">
+                    <div class="card h-100 border-light shadow-sm-hover overflow-hidden">
+                        <div class="car-card__img-wrap">
+                            <img src="image/car6_1.jpg" alt="Lada Granta">
+                            <div class="car-card__badges">
+                                <span class="car-card__badge">VIN-номера проверены</span>
+                                <span class="car-card__badge">VIN-номера проверены</span>
+                            </div>
+                        </div>
+                        <div class="car-card__body">
+                            <p class="car-card__mileage">Без пробега</p>
+                            <p class="car-card__name">Ваз (Lada) Гранта седан Comfort 16 КЛ</p>
+                            <p class="car-card__year">Год выпуска 2021</p>
+                            <table class="car-card__prices">
+                                <tr>
+                                    <td>Аренда с выкупом</td>
+                                    <td>1&nbsp;300 руб/сутки</td>
+                                </tr>
+                                <tr>
+                                    <td>Рассрочка</td>
+                                    <td>1&nbsp;200 руб/сутки</td>
+                                </tr>
+                                <tr>
+                                    <td>Наличные</td>
+                                    <td>1&nbsp;100 руб/сутки</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <a href="#" class="btn-car-filled">Полные характеристики</a>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="car-card">
+                        <div class="car-card__img-wrap">
+                            <img src="image/car6_2.jpg" alt="Lada Granta">
+                            <div class="car-card__badges">
+                                <span class="car-card__badge">VIN-номера проверены</span>
+                                <span class="car-card__badge">VIN-номера проверены</span>
+                            </div>
+                            <span class="car-card__badge-soon">Скоро в продаже</span>
+                        </div>
+                        <div class="car-card__body">
+                            <p class="car-card__mileage">Без пробега</p>
+                            <p class="car-card__name">Ваз (Lada) Гранта седан Comfort 16 КЛ</p>
+                            <p class="car-card__year">Год выпуска 2021</p>
+                            <table class="car-card__prices">
+                                <tr>
+                                    <td>Аренда с выкупом</td>
+                                    <td>1&nbsp;300 руб/сутки</td>
+                                </tr>
+                                <tr>
+                                    <td>Рассрочка</td>
+                                    <td>1&nbsp;200 руб/сутки</td>
+                                </tr>
+                                <tr>
+                                    <td>Наличные</td>
+                                    <td>1&nbsp;100 руб/сутки</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <a href="#" class="btn-car-outline">Полные характеристики</a>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="car-card">
+                        <div class="car-card__img-wrap">
+                            <img src="image/car6_3.jpg" alt="Lada Granta">
+                            <div class="car-card__badges">
+                                <span class="car-card__badge">VIN-номера проверены</span>
+                                <span class="car-card__badge">VIN-номера проверены</span>
+                            </div>
+                        </div>
+                        <div class="car-card__body">
+                            <p class="car-card__mileage">Без пробега</p>
+                            <p class="car-card__name">Ваз (Lada) Гранта седан Comfort 16 КЛ</p>
+                            <p class="car-card__year">Год выпуска 2021</p>
+                            <table class="car-card__prices">
+                                <tr>
+                                    <td>Аренда с выкупом</td>
+                                    <td>1&nbsp;300 руб/сутки</td>
+                                </tr>
+                                <tr>
+                                    <td>Рассрочка</td>
+                                    <td>1&nbsp;200 руб/сутки</td>
+                                </tr>
+                                <tr>
+                                    <td>Наличные</td>
+                                    <td>1&nbsp;100 руб/сутки</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <a href="#" class="btn-car-outline-accent">Полные характеристики</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!--планшет-->
+            <div id="catalogCarouselTablet" class="carousel slide catalog-carousel carousel-tablet"
+                data-bs-ride="false">
+                <div class="carousel-inner">
+
+                    <div class="carousel-item active">
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <div class="car-card">
+                                    <div class="car-card__img-wrap">
+                                        <img src="image/car6_1.jpg" alt="Lada Granta">
+                                        <div class="car-card__badges">
+                                            <span class="car-card__badge">VIN-номера проверены</span>
+                                            <span class="car-card__badge">VIN-номера проверены</span>
+                                        </div>
+                                    </div>
+                                    <div class="car-card__body">
+                                        <p class="car-card__mileage">Без пробега</p>
+                                        <p class="car-card__name">Ваз (Lada) Гранта седан Comfort 16 КЛ</p>
+                                        <p class="car-card__year">Год выпуска 2021</p>
+                                        <table class="car-card__prices">
+                                            <tr>
+                                                <td>Аренда с выкупом</td>
+                                                <td>1&nbsp;300 руб/сутки</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Рассрочка</td>
+                                                <td>1&nbsp;200 руб/сутки</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Наличные</td>
+                                                <td>1&nbsp;100 руб/сутки</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <a href="#" class="btn-car-filled">Полные характеристики</a>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="car-card">
+                                    <div class="car-card__img-wrap">
+                                        <img src="image/car6_2.jpg" alt="Lada Granta">
+                                        <div class="car-card__badges">
+                                            <span class="car-card__badge">VIN-номера проверены</span>
+                                            <span class="car-card__badge">VIN-номера проверены</span>
+                                        </div>
+                                        <span class="car-card__badge-soon">Скоро в продаже</span>
+                                    </div>
+                                    <div class="car-card__body">
+                                        <p class="car-card__mileage">Без пробега</p>
+                                        <p class="car-card__name">Ваз (Lada) Гранта седан Comfort 16 КЛ</p>
+                                        <p class="car-card__year">Год выпуска 2021</p>
+                                        <table class="car-card__prices">
+                                            <tr>
+                                                <td>Аренда с выкупом</td>
+                                                <td>1&nbsp;300 руб/сутки</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Рассрочка</td>
+                                                <td>1&nbsp;200 руб/сутки</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Наличные</td>
+                                                <td>1&nbsp;100 руб/сутки</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <a href="#" class="btn-car-outline">Полные характеристики</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <div class="car-card">
+                                    <div class="car-card__img-wrap">
+                                        <img src="image/car6_3.jpg" alt="Lada Granta">
+                                        <div class="car-card__badges">
+                                            <span class="car-card__badge">VIN-номера проверены</span>
+                                            <span class="car-card__badge">VIN-номера проверены</span>
+                                        </div>
+                                    </div>
+                                    <div class="car-card__body">
+                                        <p class="car-card__mileage">Без пробега</p>
+                                        <p class="car-card__name">Ваз (Lada) Гранта седан Comfort 16 КЛ</p>
+                                        <p class="car-card__year">Год выпуска 2021</p>
+                                        <table class="car-card__prices">
+                                            <tr>
+                                                <td>Аренда с выкупом</td>
+                                                <td>1&nbsp;300 руб/сутки</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Рассрочка</td>
+                                                <td>1&nbsp;200 руб/сутки</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Наличные</td>
+                                                <td>1&nbsp;100 руб/сутки</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <a href="#" class="btn-car-outline-accent">Полные характеристики</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#catalogCarouselTablet" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Слайд 1"></button>
+                    <button type="button" data-bs-target="#catalogCarouselTablet" data-bs-slide-to="1"
+                        aria-label="Слайд 2"></button>
+                </div>
+            </div>
+
+            <!-- слайдер -->
+            <div id="catalogCarouselMobile" class="carousel slide catalog-carousel carousel-mobile"
+                data-bs-ride="false">
+                <div class="carousel-inner">
+
+                    <div class="carousel-item active">
+                        <div class="car-card">
+                            <div class="car-card__img-wrap">
+                                <img src="image/car6_1.jpg" alt="Lada Granta">
+                                <div class="car-card__badges">
+                                    <span class="car-card__badge">VIN-номера проверены</span>
+                                    <span class="car-card__badge">VIN-номера проверены</span>
+                                </div>
+                            </div>
+                            <div class="car-card__body">
+                                <p class="car-card__mileage">Без пробега</p>
+                                <p class="car-card__name">Ваз (Lada) Гранта седан Comfort 16 КЛ</p>
+                                <p class="car-card__year">Год выпуска 2021</p>
+                                <table class="car-card__prices">
+                                    <tr>
+                                        <td>Аренда с выкупом</td>
+                                        <td>1&nbsp;300 руб/сутки</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Рассрочка</td>
+                                        <td>1&nbsp;200 руб/сутки</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Наличные</td>
+                                        <td>1&nbsp;100 руб/сутки</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <a href="#" class="btn-car-filled">Полные характеристики</a>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="car-card">
+                            <div class="car-card__img-wrap">
+                                <img src="image/car6_2.jpg" alt="Lada Granta">
+                                <div class="car-card__badges">
+                                    <span class="car-card__badge">VIN-номера проверены</span>
+                                    <span class="car-card__badge">VIN-номера проверены</span>
+                                </div>
+                                <span class="car-card__badge-soon">Скоро в продаже</span>
+                            </div>
+                            <div class="car-card__body">
+                                <p class="car-card__mileage">Без пробега</p>
+                                <p class="car-card__name">Ваз (Lada) Гранта седан Comfort 16 КЛ</p>
+                                <p class="car-card__year">Год выпуска 2021</p>
+                                <table class="car-card__prices">
+                                    <tr>
+                                        <td>Аренда с выкупом</td>
+                                        <td>1&nbsp;300 руб/сутки</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Рассрочка</td>
+                                        <td>1&nbsp;200 руб/сутки</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Наличные</td>
+                                        <td>1&nbsp;100 руб/сутки</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <a href="#" class="btn-car-outline">Полные характеристики</a>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="car-card">
+                            <div class="car-card__img-wrap">
+                                <img src="image/car6_3.jpg" alt="Lada Granta">
+                                <div class="car-card__badges">
+                                    <span class="car-card__badge">VIN-номера проверены</span>
+                                    <span class="car-card__badge">VIN-номера проверены</span>
+                                </div>
+                            </div>
+                            <div class="car-card__body">
+                                <p class="car-card__mileage">Без пробега</p>
+                                <p class="car-card__name">Ваз (Lada) Гранта седан Comfort 16 КЛ</p>
+                                <p class="car-card__year">Год выпуска 2021</p>
+                                <table class="car-card__prices">
+                                    <tr>
+                                        <td>Аренда с выкупом</td>
+                                        <td>1&nbsp;300 руб/сутки</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Рассрочка</td>
+                                        <td>1&nbsp;200 руб/сутки</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Наличные</td>
+                                        <td>1&nbsp;100 руб/сутки</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <a href="#" class="btn-car-outline-accent">Полные характеристики</a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#catalogCarouselMobile" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Слайд 1"></button>
+                    <button type="button" data-bs-target="#catalogCarouselMobile" data-bs-slide-to="1"
+                        aria-label="Слайд 2"></button>
+                    <button type="button" data-bs-target="#catalogCarouselMobile" data-bs-slide-to="2"
+                        aria-label="Слайд 3"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5" style="background-color: var(--color-block-bg);">
+        <div class="container" style="max-width: 1300px;">
+            <h2 style="font-weight: 900; font-size: 30px; line-height: 1.3; color: var(--color-text);">
+                Получить автомобиль легко<br>
+                <span style="color: var(--color-accent);">всего 4 шага и 30 минут времени</span>
+            </h2>
+            <p class="fw-medium mb-5" style="font-size: 18px; color: var(--color-text);">Срок выкупа — от 3 месяцев до 2
+                лет</p>
+
+            <div class="row g-4 row-cols-1 row-cols-sm-2 row-cols-xl-4">
+                <div class="col">
+                    <div class="h-100 d-flex flex-column">
+                        <div class="d-flex align-items-center mb-4">
+                            <span class="fw-bolder"
+                                style="background-color: #e4f2fa; color: var(--color-text); font-size: 20px; padding: 6px 18px; border-radius: 4px;">1.
+                                Шаг</span>
+                        </div>
+                        <p class="mb-4" style="font-size: 16px; line-height: 1.45; color: var(--color-text);">
+                            <strong class="fw-bolder">Выбирайте</strong> автомобиль на сайте или сразу приезжайте в наш
+                            офис. Уточнить время можно по телефону
+                        </p>
+                        <div class="mt-auto">
+                            <div class="fw-bolder mb-3"
+                                style="font-size: 24px; line-height: 1.2; color: var(--color-text);">8 800 456</div>
+                            <button class="btn px-4 py-2 fw-bold w-100"
+                                style="background-color: var(--color-accent); color: var(--color-bg); font-size: 18px;"
+                                data-bs-toggle="modal" data-bs-target="#callbackModal">Заказать
+                                звонок</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="h-100 d-flex flex-column">
+                        <div class="d-flex align-items-center mb-4"><span class="fw-bolder"
+                                style="background-color: #e4f2fa; color: var(--color-text); font-size: 20px; padding: 6px 18px; border-radius: 4px;">2.
+                                Шаг</span></div>
+                        <p class="mb-0" style="font-size: 16px; line-height: 1.45; color: var(--color-text);">
+                            <strong class="fw-bolder">Вместе</strong> рассчитаем первый взнос и удобный ежемесячный
+                            платеж. Сумму платежа потом можно изменить.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="h-100 d-flex flex-column">
+                        <div class="d-flex align-items-center mb-4"><span class="fw-bolder"
+                                style="background-color: #e4f2fa; color: var(--color-text); font-size: 20px; padding: 6px 18px; border-radius: 4px;">3.
+                                Шаг</span></div>
+                        <p class="mb-0" style="font-size: 16px; line-height: 1.45; color: var(--color-text);">
+                            <strong class="fw-bolder">Заключаем</strong> договор и создаем для вас личный кабинет на
+                            сайте.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="h-100 d-flex flex-column">
+                        <div class="d-flex align-items-center mb-4"><span class="fw-bolder"
+                                style="background-color: #e4f2fa; color: var(--color-text); font-size: 20px; padding: 6px 18px; border-radius: 4px;">4.
+                                Шаг</span></div>
+                        <p class="mb-0" style="font-size: 16px; line-height: 1.45; color: var(--color-text);">
+                            <strong class="fw-bolder">Передаем</strong> вам ключи от автомобиля. У вас есть 24 часа на
+                            тест-драйв.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5" style="background-color: var(--color-bg);">
+        <div class="container">
+            <h2 class="fw-black mb-2 fs-1"
+                style="font-weight: 900; font-size: 30px; line-height: 1.2; color: var(--color-accent);">
+                Аренда с выкупом <span style="color: var(--color-line);">автомобиля с нами — это:</span>
+            </h2>
+
+            <div class="p-3 p-md-4 rounded-3"
+                style="background-color: var(--color-block-bg); border: 2px solid var(--color-accent) !important;">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-start" style="font-size: 18px; line-height: 1.45;">
+                            <img src="icon/icon_list.svg" alt="Маркер" class="me-3 flex-shrink-0 mt-1"
+                                style="width: 25px; height: 25px;">
+                            <p class="fw-bold mb-0" style="color: var(--color-text);">
+                                Всегда не менее <span class="fw-bold" style="color: var(--color-accent);">25
+                                    автомобилей на ваш выбор</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-start" style="font-size: 18px; line-height: 1.45;">
+                            <img src="icon/icon_list.svg" alt="Маркер" class="me-3 flex-shrink-0 mt-1"
+                                style="width: 25px; height: 25px;">
+                            <p class="fw-bold mb-0" style="color: var(--color-text);">
+                                <span class="fw-bold" style="color: var(--color-accent);">Официальный договор</span>
+                                и прозрачные условия
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-start" style="font-size: 18px; line-height: 1.45;">
+                            <img src="icon/icon_list.svg" alt="Маркер" class="me-3 flex-shrink-0 mt-1"
+                                style="width: 25px; height: 25px;">
+                            <p class="fw-bold mb-0" style="color: var(--color-text);">
+                                <span class="fw-bold" style="color: var(--color-accent);">Доступ в личный
+                                    кабинет</span> с историей платежей и прогрессом выплат
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-start" style="font-size: 18px; line-height: 1.45;">
+                            <img src="icon/icon_list.svg" alt="Маркер" class="me-3 flex-shrink-0 mt-1"
+                                style="width: 25px; height: 25px;">
+                            <p class="fw-bold mb-0" style="color: var(--color-text);">
+                                <span class="fw-bold" style="color: var(--color-accent);">Персональный
+                                    менеджер</span>, который всегда поможет
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5" style="background-color: var(--color-block-bg);">
+        <div class="container">
+            <div class="row align-items-center justify-content-between">
+
+                <div class="accordion mb-4" id="faqAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#faq1">
+                                Каковы требования к водителю?
+                            </button>
+                        </h2>
+                        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Для оформления аренды с выкупом вам понадобятся только паспорт и водительское
+                                удостоверение. Стаж вождения значения не имеет.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-5 col-md-6 mb-4 mb-md-0">
+                    <h2 class="fw-bold mb-2 fs-1">Остались вопросы?</h2>
+                    <h3 class="fw-bold mb-3 fs-1" style="color: var(--color-accent);">Свяжитесь с нами</h3>
+                    <p class="text-muted mb-3" style="font-size: 18px; line-height: 1.4;">
+                        Если вы столкнулись с трудностями при работе с Бери Рули, у вас есть какие‑то замечания или
+                        предложения — позвоните.
+                    </p>
+                    <p class="fw-bold mb-1" style="font-size: 20px; line-height: 1.4;">Прием звонков с 09:00 до 18:00
+                    </p>
+                    <p class="fw-bold mb-0" style="color: var(--color-accent); font-size: 20px;">+7 (962) 495 55 54</p>
+                </div>
+
+                <div class="col-lg-6 col-md-6">
+                    <form>
+                        <input type="text" class="form-control mb-3 py-2" placeholder="Ваше имя"
+                            style="border-radius: 6px; border-color: var(--color-link);">
+                        <input type="tel" class="form-control mb-3 py-2" placeholder="Номер телефона"
+                            style="border-radius: 6px; border-color: var(--color-link);">
+                        <input type="text" class="form-control mb-3 py-2" placeholder="Ваш вопрос"
+                            style="border-radius: 6px; border-color: var(--color-link);">
+
+                        <div class="d-flex align-items-center justify-content-between flex-wrap">
+                            <div class="form-check mb-2" style="max-width: 220px;">
+                                <input class="form-check-input" type="checkbox" id="agree"
+                                    style="border: 2px solid var(--color-link); border-radius: 6px;">
+                                <label class="form-check-label small" for="agree" style="line-height: 1.2;"
+                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                    title="Мы гарантируем конфиденциальность и не передаем ваши данные третьим лицам.">
+                                    Согласие на обработку персональных данных
+                                </label>
+                            </div>
+                            <button class="btn px-5 py-2 fw-bold" id="submitQuestionBtn"
+                                style="background-color: var(--color-accent); color: var(--color-bg); font-size: 18px;">
+                                <span class="spinner-border spinner-border-sm me-2 d-none" role="status"
+                                    aria-hidden="true"></span>
+                                Задать вопрос
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="pt-2" style="background-color: var(--color-bg);">
+        <div class="container-fluid" style="max-width: 1300px;">
+            <div class="row align-items-start justify-content-between">
+                <div class="col-xl-3 col-lg-4 mb-3">
+                    <p class="mb-2"><a href="#" class="text-decoration-none"
+                            style="color: var(--color-accent);">Ставрополь:</a> <span
+                            style="color: var(--color-text);">ул. Доваторцев, 21</span></p>
+                    <p class="mb-2"><span style="color: var(--color-link);">Главный офис:</span> <a href="#"
+                            class="text-decoration-none" style="color: var(--color-accent);">г. Пятигорск ул. Бунимовича
+                            д.38</a></p>
+                    <p class="mb-2"><span style="color: var(--color-link);">График работы:</span> <span
+                            style="color: var(--color-accent);">Пн-Сб с 9:00 до 18:00</span></p>
+                    <p class="mb-4"><span style="color: var(--color-link);">E-mail:</span> <a
+                            href="mailto:avto@beri-ruli.ru" class="text-decoration-none"
+                            style="color: var(--color-accent);">avto@beri-ruli.ru</a></p>
+                    <div class="fw-bold" style="font-size: 18px; letter-spacing: 0.5px; color: var(--color-text);">+7
+                        (962) 495 55 54</div>
+                </div>
+
+                <div class="col-xl-3 col-lg-3 mb-4">
+                    <h5 class="fw-bold" style="font-size: 14px; color: var(--color-text);">О "Бери рули"</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-decoration-none" style="color: var(--color-line);"
+                                onmouseover="this.style.color='var(--color-accent)'"
+                                onmouseout="this.style.color='var(--color-line)'">Команда</a></li>
+                        <li><a href="#" class="text-decoration-none" style="color: var(--color-line);"
+                                onmouseover="this.style.color='var(--color-accent)'"
+                                onmouseout="this.style.color='var(--color-line)'">Вакансии</a></li>
+                        <li><a href="#" class="text-decoration-none" style="color: var(--color-line);"
+                                onmouseover="this.style.color='var(--color-accent)'"
+                                onmouseout="this.style.color='var(--color-line)'">Новости</a></li>
+                        <li><a href="#" class="text-decoration-none" style="color: var(--color-line);"
+                                onmouseover="this.style.color='var(--color-accent)'"
+                                onmouseout="this.style.color='var(--color-line)'">Акции и спецпредложения</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-xl-3 col-lg-3 mb-4">
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="fw-bold text-decoration-none" style="color: var(--color-text);"
+                                onmouseover="this.style.color='var(--color-accent)'"
+                                onmouseout="this.style.color='var(--color-text)'">Каталог авто</a></li>
+                        <li><a href="#" class="fw-bold text-decoration-none" style="color: var(--color-text);"
+                                onmouseover="this.style.color='var(--color-accent)'"
+                                onmouseout="this.style.color='var(--color-text)'">Аренда с выкупом</a></li>
+                        <li><a href="#" class="fw-bold text-decoration-none" style="color: var(--color-text);"
+                                onmouseover="this.style.color='var(--color-accent)'"
+                                onmouseout="this.style.color='var(--color-text)'">Истории выкупа</a></li>
+                        <li><a href="#" class="fw-bold text-decoration-none" style="color: var(--color-text);"
+                                onmouseover="this.style.color='var(--color-accent)'"
+                                onmouseout="this.style.color='var(--color-text)'">Дубликаты гос.номеров</a></li>
+                        <li><a href="#" class="fw-bold text-decoration-none" style="color: var(--color-text);"
+                                onmouseover="this.style.color='var(--color-accent)'"
+                                onmouseout="this.style.color='var(--color-text)'">Контакты</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row pt-4 pb-2 align-items-center justify-content-between">
+                <div class="col-auto mb-3 mb-xl-0">
+                    <div class="d-flex gap-2">
+                        <a href="#" class="d-flex align-items-center justify-content-center text-decoration-none"
+                            style="width: 44px; height: 44px; background: var(--color-block-bg); border-radius: 6px;"><img
+                                src="icon/insta.svg" alt="Instagram" style="width: 20px; height: 20px;"></a>
+                        <a href="#" class="d-flex align-items-center justify-content-center text-decoration-none"
+                            style="width: 44px; height: 44px; background: var(--color-block-bg); border-radius: 6px;"><img
+                                src="icon/vk.svg" alt="VK" style="width: 20px; height: 20px;"></a>
+                        <a href="#" class="d-flex align-items-center justify-content-center text-decoration-none"
+                            style="width: 44px; height: 44px; background: var(--color-block-bg); border-radius: 6px;"><img
+                                src="icon/telegram.svg" alt="Telegram" style="width: 20px; height: 20px;"></a>
+                    </div>
+                </div>
+                <div class="col-xl-9">
+                    <div class="row justify-content-xl-end g-3" style="font-size: 14px; color: var(--color-link);">
+                        <div class="col-4"><a href="#" class="text-decoration-underline"
+                                style="color: var(--color-link);" onmouseover="this.style.color='var(--color-text)'"
+                                onmouseout="this.style.color='var(--color-link)'">Пользовательское соглашение</a></div>
+                        <div class="col-4"><a href="#" class="text-decoration-underline"
+                                style="color: var(--color-link);" onmouseover="this.style.color='var(--color-text)'"
+                                onmouseout="this.style.color='var(--color-link)'">Политика конфиденциальности</a></div>
+                        <div class="col-3"><a href="#" class="text-decoration-underline"
+                                style="color: var(--color-link);" onmouseover="this.style.color='var(--color-text)'"
+                                onmouseout="this.style.color='var(--color-link)'">Реквизиты компании</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="background-color: var(--color-line); color: var(--color-notice); font-size: 14px;">
+            <div class="container-fluid d-flex justify-content-between align-items-center py-2"
+                style="max-width: 1300px;">
+                <div>© 2010–2021 ООО «Бери Рули»</div>
+                <div>Разработка сайта <a href="#" class="text-decoration-underline fw-bold"
+                        style="color: var(--color-notice);">WEBELEMENT</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal fade" id="callbackModal" tabindex="-1" aria-labelledby="callbackModalLabel" aria-hidden="true"
+        style="font-family: var(--font-main);">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="border-radius: 12px; border: none; overflow: hidden;">
+                <div class="modal-header text-white p-4" style="background-color: var(--color-line);">
+                    <h5 class="modal-title fw-bold" id="callbackModalLabel">Обратный звонок</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Закрыть"></button>
+                </div>
+                <form action="#" method="POST">
+                    <div class="modal-body p-4">
+                        <p class="text-muted small mb-3">Оставьте свои контакты, и наш менеджер свяжется с вами в
+                            течение 5 минут.</p>
+
+                        <div class="mb-3">
+                            <label for="modal-name" class="form-label small fw-semibold">Ваше имя</label>
+                            <input type="text" class="form-control p-2.5" id="modal-name" placeholder="Иван" required
+                                style="border-radius: 6px;">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="modal-phone" class="form-label small fw-semibold">Номер телефона</label>
+                            <input type="tel" class="form-control p-2.5" id="modal-phone"
+                                placeholder="+7 (999) 000-00-00" required style="border-radius: 6px;">
+                        </div>
+
+                        <div class="form-check mt-3">
+                            <input class="form-check-input" type="checkbox" id="modal-agree" checked required>
+                            <label class="form-check-label text-muted" for="modal-agree"
+                                style="font-size: 12px; line-height: 1.3;">
+                                Я согласен на обработку персональных данных
+                            </label>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0 p-4 pt-0">
+                        <button type="button" class="btn btn-secondary w-100 mb-2 py-2" data-bs-dismiss="modal"
+                            style="border-radius: 6px; background-color: var(--color-block-bg); color: var(--color-text); border: none;">Отмена</button>
+                        <button type="submit" class="btn w-100 py-2 fw-bold text-white"
+                            style="background-color: var(--color-accent); border-radius: 6px; border: none;">Перезвоните
+                            мне</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 10000;">
+
+        <div id="promoToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true"
+            data-bs-delay="7000"
+            style="border-radius: 12px; border: none; background-color: var(--color-line); color: #ffffff; font-family: var(--font-main);">
+            <div class="toast-header border-0 text-white"
+                style="background-color: rgba(255,255,255,0.05); border-top-left-radius: 12px; border-top-right-radius: 12px;">
+                <strong class="me-auto" style="color: var(--color-notice);">🔥 Спецпредложение</strong>
+                <small class="text-white-50">сейчас</small>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"
+                    aria-label="Закрыть"></button>
+            </div>
+            <div class="toast-body p-3">
+                Оставьте заявку сегодня и получите <strong>дубликаты госномеров в подарок</strong> при покупке авто!
+                <div class="mt-2 pt-2 border-top border-secondary">
+                    <button type="button" class="btn btn-sm text-white fw-bold" data-bs-toggle="modal"
+                        data-bs-target="#callbackModal" data-bs-dismiss="toast"
+                        style="background-color: var(--color-accent); border-radius: 6px;">
+                        Хочу подарок
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 11000;">
+        <div id="successQuestionToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true"
+            data-bs-delay="4000"
+            style="border-radius: 12px; border: none; background-color: #28a745; color: #ffffff; font-family: var(--font-main); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);">
+            <div class="toast-body d-flex align-items-center p-3">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                    class="me-2">
+                    <polyline points="20 6 9 17 4 12" />
+                </svg>
+                <span class="fw-bold">Ваш вопрос успешно отправлен!</span>
+                <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="toast"
+                    aria-label="Закрыть"></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const submitBtn = document.getElementById('submitQuestionBtn');
+
+            if (submitBtn) {
+                submitBtn.addEventListener('click', function (event) {
+                    // Если кнопка находится внутри формы <form>, эта строка предотвратит 
+                    // мгновенную перезагрузку страницы, позволяя выполниться анимации
+                    event.preventDefault();
+
+                    // 1. Находим спиннер внутри нажатой кнопки
+                    const spinner = this.querySelector('.spinner-border');
+
+                    // 2. Делаем кнопку неактивной, чтобы избежать спам-кликов
+                    this.disabled = true;
+
+                    // 3. Показываем спиннер (удаляем класс d-none)
+                    if (spinner) {
+                        spinner.classList.remove('d-none');
+                    }
+
+                    // 4. (Опционально) Изменяем текст кнопки для информативности
+                    // Для этого сохраним старый текст, чтобы потом вернуть
+                    const originalText = this.lastChild.textContent;
+                    this.lastChild.textContent = ' Отправка...';
+
+                    // --- ИМИТАЦИЯ ЗАПРОСА НА СЕРВЕР (например, через fetch) ---
+                    // Заменяем этот setTimeout на реальный запрос, когда подключите бэкенд.
+                    // Сейчас он просто ждет 3 секунды (3000 мс) и возвращает кнопку в норму.
+                    setTimeout(() => {
+
+                        // Возвращаем кнопку в исходное состояние:
+                        this.disabled = false; // Включаем кнопку обратно
+
+                        if (spinner) {
+                            spinner.classList.add('d-none'); // Снова скрываем спиннер
+                        }
+
+                        this.lastChild.textContent = originalText; // Возвращаем текст "Задать вопрос"
+
+                        // Здесь можно вызвать ваш Toast-уведомление об успешной отправке!
+                        // Например, если у вас настроен promoToast:
+                        // var successToast = bootstrap.Toast.getOrCreateInstance(document.getElementById('promoToast'));
+                        // successToast.show();
+
+                    }, 3000);
+                });
+            }
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Находим кнопку по её точному ID
+            var submitBtn = document.getElementById('submitQuestionBtn');
+
+            if (submitBtn) {
+                submitBtn.addEventListener('click', function (event) {
+                    // 1. Железно блокируем любые стандартные действия браузера (включая прыжки по ссылкам)
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    // 2. Находим элемент уведомления по ID
+                    var toastEl = document.getElementById('successQuestionToast');
+                    if (toastEl) {
+                        // Инициализируем компонент Toast средствами Bootstrap и принудительно показываем его
+                        var bootstrapToast = new bootstrap.Toast(toastEl);
+                        bootstrapToast.show();
+                    }
+
+                    // 3. Находим форму, в которой лежит эта кнопка, чтобы очистить её поля
+                    var form = submitBtn.closest('form');
+                    if (form) {
+                        form.reset();
+                    }
+                });
+            }
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Находим элемент уведомления по ID
+            var promoToastEl = document.getElementById('promoToast');
+
+            if (promoToastEl) {
+                // Инициализируем компонент Toast из Bootstrap
+                var promoToast = new bootstrap.Toast(promoToastEl);
+
+                // Показываем уведомление с задержкой в 3000 миллисекунд (3 секунды)
+                setTimeout(function () {
+                    promoToast.show();
+                }, 3000);
+            }
+        });
+    </script>
+    <script>
+        window.addEventListener('load', function () {
+            var preloader = document.getElementById('page-preloader');
+
+            // Устанавливаем задержку в 500 миллисекунд (0.5 секунды)
+            setTimeout(function () {
+                if (preloader) {
+                    // Плавно скрываем за счет прозрачности (благодаря CSS transition)
+                    preloader.style.opacity = '0';
+                    preloader.style.visibility = 'hidden';
+                }
+            }, 500);
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Находим все элементы с атрибутом data-bs-toggle="tooltip" и инициализируем их
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl)
+            })
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
