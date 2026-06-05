@@ -45,7 +45,7 @@
             </div>
         </div>
 
-        <header class="border-bottom" style="position: fixed; top: 40; left: 0; width: 100%; z-index: 1050; background-color: #ffffff;">
+        <header class="border-bottom" style="position: fixed; top: 40px; left: 0; width: 100%; z-index: 1050; background-color: #ffffff;">
             <div class="container-fluid px-3 max-width-container header-container mx-auto">
                 <div class="row align-items-center justify-content-between header-inner-row g-0 flex-nowrap">
 
@@ -91,8 +91,8 @@
                 </div>
             </div>
 
-            <div class="offcanvas offcanvas-end w-100 border-0 d-lg-none" tabindex="-1" id="mobileMenuOffcanvas"
-                aria-labelledby="mobileMenuOffcanvasLabel">
+            <div class="offcanvas offcanvas-end w-100 border-0 d-lg-none" tabindex="-1" id="mobileMenuOffcanvas" 
+                aria-labelledby="mobileMenuOffcanvasLabel" role="region">
                 <div class="d-flex justify-content-end p-3">
                     <button type="button" class="btn-close-custom border-0 bg-transparent p-2" data-bs-dismiss="offcanvas"
                         aria-label="Закрыть">
@@ -456,7 +456,7 @@
                     <div class="benefit-item-box d-flex align-items-start">
                         <img src="icon/icon4_2_1.svg" alt="Иконка" class="benefit-icon me-3 flex-shrink-0">
                         <div>
-                            <h4 class="benefit-title fw-bold mb-2">Нет фиксированной суммы взноса</h4>
+                            <h3 class="benefit-title fw-bold mb-2">Нет фиксированной суммы взноса</h3>
                             <p class="benefit-desc text-muted-custom mb-0">Чтобы быстрее выкупить автомобиль — просто
                                 напишите об этом менеджеру</p>
                         </div>
@@ -1076,7 +1076,7 @@
                 </div>
 
                 <div class="col-xl-3 col-lg-3 mb-4">
-                    <h5 class="fw-bold" style="font-size: 14px; color: var(--color-text);">О "Бери рули"</h5>
+                    <h4 class="fw-bold" style="font-size: 14px; color: var(--color-text);">О "Бери рули"</h4>
                     <ul class="list-unstyled">
                         <li><a href="#" class="text-decoration-none" style="color: var(--color-line);"
                                 onmouseover="this.style.color='var(--color-accent)'"
@@ -1154,8 +1154,8 @@
         </div>
     </footer>
 
-    <div class="modal fade" id="callbackModal" tabindex="-1" aria-labelledby="callbackModalLabel" aria-hidden="true"
-        style="font-family: var(--font-main);">
+    <div class="modal fade" id="callbackModal" tabindex="-1" aria-labelledby="callbackModalLabel" aria-hidden="true" 
+        style="font-family: var(--font-main);" role="dialog">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content" style="border-radius: 12px; border: none; overflow: hidden;">
                 <div class="modal-header text-white p-4" style="background-color: var(--color-line);">
@@ -1364,5 +1364,4 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 
 </body>
-
 </html>

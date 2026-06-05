@@ -240,7 +240,7 @@ img {
   display: flex;
   align-items: center;
   white-space: nowrap;
-  padding: 10 clamp(4px, 0.5vw, 10px);
+  padding: 10px clamp(4px, 0.5vw, 10px);
 }
 
 .menu-list .has-dropdown a::after,
